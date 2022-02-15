@@ -1,0 +1,69 @@
+<div action="" class="form-inline">
+  <div class="form-group mb-2">
+    <label class="mr-2">Filtro: </label>
+    <input type="text"
+    class="form-control mr-2"
+    placeholder="buscar"
+    [(ngModel)]="filtroLista"
+    >
+   <!-- <button class="btn btn-outline-success"> Buscar </button> -->
+  </div>
+</div>
+<!-- <h3> Filtro: {{filtroLista}}</h3> -->
+<table class="table table-striped table-dark">
+    <!--<thead class="thead-light"> -->
+  <thead class="thead-light">
+    <tr>
+      <th>#</th>
+      <th>
+        <button type ="button" class="btn btn-dark btn-sm"
+          (click) = "alterarImagem()"> {{!mostrarImagem ? ' Exibir ' : ' Ocultar '}}
+        </button>
+      </th>
+      <th>Tema</th>
+      <th>Local</th>
+      <th>Data</th>
+      <th>Qtd Pessoas</th>
+      <th>Lote</th>
+      <th>Opções</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="eventos && eventos.length">
+    <tr *ngFor="let evento of eventosFiltrados">
+      <td>{{evento.eventoId}}</td>
+      <td>
+        <!--  <img *ngIf = "mostrarImagem"src="/assets/{{evento.imageUrl}}" -->
+        <img [collapse] = "!mostrarImagem" [isAnimated]="true"
+        src="/assets/{{evento.imageUrl}}"
+        [style.width.px]="widthImg"
+        [style.margin.px]="marginImg">
+      </td>
+      <td>{{evento.tema}}</td>
+      <td>{{evento.local}}</td>
+      <td>{{evento.dataEvento}}</td>
+      <td>{{evento.qtdPessoas}}</td>
+      <td>{{evento.lote}}</td>
+      <td>
+        <button type= "button"class="btn btn-primary btn-sm mr-2"> editar </button>
+        <button type= "button"class="btn btn-danger btn-sm"> excluir </button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!eventos.length">
+    <tr>
+      <td colspan="8" class="text-center">
+        <h5> Nenhum evento encontrado!</h5>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+<!--
+<div *ngFor="let evento of eventos">
+  <p><b>Tema: </b>{{evento.tema}}</p>
+  <p><b>Local: </b>{{evento.local}}</p>
+  <hr/>
+</div>
+{{eventos[0].tema}}
+{{eventos | json}} Javascript object notations
+-->
+
